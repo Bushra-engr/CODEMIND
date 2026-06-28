@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodeMind — AI Powered Coding Assistant</title>
+  <meta name="description" content="Agentic AI coding assistant that reviews, fixes, optimizes, documents and explains your code in one run." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+  <!-- Background ambience -->
+  <div class="grid-texture" aria-hidden="true"></div>
+  <div class="orb orb-1" aria-hidden="true"></div>
+  <div class="orb orb-2" aria-hidden="true"></div>
+  <div class="orb orb-3" aria-hidden="true"></div>
+
+  <!-- ─────────── NAVBAR ─────────── -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="brand" data-nav="landing" data-testid="brand-logo">
+        <div class="brand-mark"><span>CM</span></div>
+        <div class="brand-text">
+          <span class="brand-eyebrow">Agentic Code Intelligence</span>
+          <span class="brand-name">CodeMind</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a class="nav-link active" data-nav="landing" data-testid="nav-home">Home</a>
+        <a class="nav-link" data-nav="dashboard" data-testid="nav-dashboard">Dashboard</a>
+        <a class="nav-link" data-nav="history" data-testid="nav-history">History</a>
+        <a class="nav-link" data-nav="about" data-testid="nav-about">About</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div id="sessionBadge" class="session-badge" data-testid="session-badge">
+          <span class="session-dot"></span>
+          <span class="session-label">Guest</span>
+        </div>
+
+        <button id="paletteToggleBtn" class="icon-btn" type="button" aria-label="Toggle palette" data-testid="palette-toggle-btn" title="Switch palette">
+          <i class="fa-solid fa-mug-hot icon-brown"></i>
+          <i class="fa-solid fa-leaf icon-green"></i>
+        </button>
+        <button id="themeToggleBtn" class="icon-btn" type="button" aria-label="Toggle theme" data-testid="theme-toggle-btn" title="Switch theme">
+          <i class="fa-solid fa-moon icon-moon"></i>
+          <i class="fa-solid fa-sun icon-sun"></i>
+        </button>
+
+        <button id="githubConnectBtn" class="ghost-btn" data-testid="github-connect-btn">
+          <i class="fa-brands fa-github"></i>
+          <span>Connect GitHub</span>
+        </button>
+
+        <button id="signInNavBtn" class="primary-btn sm" data-nav="auth" data-testid="signin-nav-btn">
+          Sign in <i class="fa-solid fa-arrow-right"></i>
+        </button>
+        <button id="logoutBtn" class="ghost-btn danger hidden" data-testid="logout-btn">
+          <i class="fa-solid fa-right-from-bracket"></i> Sign out
+        </button>
+
+        <button class="icon-btn mobile-only" id="mobileMenuBtn" aria-label="Menu" data-testid="mobile-menu-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ─────────── PAGE: LANDING ─────────── -->
+  <main class="page page-landing active" data-page="landing" data-testid="page-landing">
+    <section class="hero-section">
+      <div class="hero-grid">
+        <div class="hero-left reveal">
+          <span class="hero-kicker"><i class="fa-solid fa-sparkles"></i> 5-Stage Agentic Workflow</span>
+          <h1 class="hero-headline">
+            Ship code that<br>
+            <em>actually works.</em>
+          </h1>
+          <p class="hero-sub">
+            Paste your code. CodeMind orchestrates a team of AI agents that review,
+            fix bugs, optimize performance, generate documentation, and explain logic —
+            then pushes everything to GitHub in a single run.
+          </p>
+
+          <div class="hero-ctas">
+            <button class="primary-btn lg" data-nav="dashboard" data-testid="hero-cta-start">
+              Start analyzing <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <button class="ghost-btn lg" data-nav="about" data-testid="hero-cta-learn">
+              <i class="fa-solid fa-circle-info"></i> How it works
+            </button>
+          </div>
+
+          <div class="hero-stats">
+            <div><strong>6</strong><span>AI Agents</span></div>
+            <div><strong>4</strong><span>Languages</span></div>
+            <div><strong>1-click</strong><span>GitHub push</span></div>
+          </div>
+        </div>
+
+        <div class="hero-right reveal delay-1">
+          <div class="ai-orb-stage">
+            <div class="ai-ring ring-1"></div>
+            <div class="ai-ring ring-2"></div>
+            <div class="ai-ring ring-3"></div>
+            <div class="ai-core">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+            <span class="ai-tag tag-a"><i class="fa-solid fa-magnifying-glass"></i> Review</span>
+            <span class="ai-tag tag-b"><i class="fa-solid fa-wrench"></i> Fix</span>
+            <span class="ai-tag tag-c"><i class="fa-solid fa-bolt"></i> Optimize</span>
+            <span class="ai-tag tag-d"><i class="fa-solid fa-book"></i> Document</span>
+            <span class="ai-tag tag-e"><i class="fa-brands fa-github"></i> Push</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="workflow-section">
+      <div class="section-head reveal">
+        <span class="section-eyebrow">Workflow</span>
+        <h2>One paste. Six agents. Zero friction.</h2>
+        <p>Every run pipes your code through a deterministic LangGraph of specialised AI agents.</p>
+      </div>
+
+      <div class="workflow-chain">
+        <div class="wf-step reveal"><div class="wf-num">01</div><i class="fa-solid fa-magnifying-glass"></i><h4>Reviewer</h4><p>Static analysis & code smells</p></div>
+        <div class="wf-arrow reveal"><i class="fa-solid fa-chevron-right"></i></div>
+        <div class="wf-step reveal delay-1"><div class="wf-num">02</div><i class="fa-solid fa-bug-slash"></i><h4>Bug Fixer</h4><p>Logic + edge-case repair</p></div>
+        <div class="wf-arrow reveal delay-1"><i class="fa-solid fa-chevron-right"></i></div>
+        <div class="wf-step reveal delay-2"><div class="wf-num">03</div><i class="fa-solid fa-bolt"></i><h4>Optimizer</h4><p>Perf & complexity gains</p></div>
+        <div class="wf-arrow reveal delay-2"><i class="fa-solid fa-chevron-right"></i></div>
+        <div class="wf-step reveal delay-3"><div class="wf-num">04</div><i class="fa-solid fa-book-open"></i><h4>Documenter</h4><p>README & inline docs</p></div>
+        <div class="wf-arrow reveal delay-3"><i class="fa-solid fa-chevron-right"></i></div>
+        <div class="wf-step reveal delay-4"><div class="wf-num">05</div><i class="fa-solid fa-lightbulb"></i><h4>Explainer</h4><p>Dry-run walkthrough</p></div>
+        <div class="wf-arrow reveal delay-4"><i class="fa-solid fa-chevron-right"></i></div>
+        <div class="wf-step reveal delay-5"><div class="wf-num">06</div><i class="fa-brands fa-github"></i><h4>GitHub</h4><p>Auto repo + push</p></div>
+      </div>
+    </section>
+
+    <section class="features-section">
+      <div class="features-grid">
+        <article class="feature-card reveal">
+          <div class="feat-ico violet"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3>JWT-secured</h3>
+          <p>Every analysis is scoped to your account. Tokens are stored locally, never shared.</p>
+        </article>
+        <article class="feature-card reveal delay-1">
+          <div class="feat-ico cyan"><i class="fa-solid fa-database"></i></div>
+          <h3>Persistent history</h3>
+          <p>Every run is saved in Neon PostgreSQL — replay, push, or delete any time.</p>
+        </article>
+        <article class="feature-card reveal delay-2">
+          <div class="feat-ico violet"><i class="fa-solid fa-code-branch"></i></div>
+          <h3>GitHub native</h3>
+          <p>Connect once, then ship optimized code + README to a new repo in one click.</p>
+        </article>
+        <article class="feature-card reveal delay-3">
+          <div class="feat-ico cyan"><i class="fa-solid fa-gauge-high"></i></div>
+          <h3>Groq-fast</h3>
+          <p>Powered by Groq LLM + LangGraph for sub-second agent orchestration.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta-section reveal">
+      <div class="cta-card">
+        <h2>Ready to analyze your first snippet?</h2>
+        <p>Sign in and run a full agentic pass in under 10 seconds.</p>
+        <button class="primary-btn lg" data-nav="auth" data-testid="cta-signin-btn">
+          Get started free <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- ─────────── PAGE: AUTH ─────────── -->
+  <main class="page page-auth" data-page="auth" data-testid="page-auth">
+    <div class="auth-shell">
+      <aside class="auth-left">
+        <div class="auth-left-inner">
+          <div class="brand small">
+            <div class="brand-mark"><span>CM</span></div>
+            <span class="brand-name">CodeMind</span>
+          </div>
+          <h2>Six agents. <em>One workflow.</em></h2>
+          <p>Sign in to start running production-grade code reviews, fixes, optimizations and docs — all from a single paste.</p>
+
+          <ul class="auth-bullets">
+            <li><i class="fa-solid fa-check"></i> Multi-agent LangGraph pipeline</li>
+            <li><i class="fa-solid fa-check"></i> Persistent run history</li>
+            <li><i class="fa-solid fa-check"></i> One-click GitHub publish</li>
+            <li><i class="fa-solid fa-check"></i> Dark + light theme</li>
+          </ul>
+
+          <div class="auth-mini-terminal">
+            <div class="t-line"><span class="t-prompt">›</span> <span class="t-green">✓</span> reviewer.run() <span class="t-muted">ok</span></div>
+            <div class="t-line"><span class="t-prompt">›</span> <span class="t-green">✓</span> fixer.run() <span class="t-muted">ok</span></div>
+            <div class="t-line"><span class="t-prompt">›</span> <span class="t-cyan">⟳</span> optimizer.run() <span class="t-muted typing">running<span class="cursor">|</span></span></div>
+          </div>
+        </div>
+      </aside>
+
+      <section class="auth-right">
+        <div class="auth-card">
+          <div class="tab-group">
+            <button class="tab active" data-tab="login" data-testid="tab-login">Login</button>
+            <button class="tab" data-tab="register" data-testid="tab-register">Register</button>
+          </div>
+
+          <form id="loginForm" class="form-stack" data-testid="login-form">
+            <h3 class="form-title">Welcome back</h3>
+            <p class="form-sub">Sign in to access your dashboard.</p>
+
+            <div class="field">
+              <label class="field-label" for="loginUsername">Email or username</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-user input-ico"></i>
+                <input class="field-input has-ico" id="loginUsername" type="text" placeholder="you@example.com" required data-testid="login-username-input" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="loginPassword">Password</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-lock input-ico"></i>
+                <input class="field-input has-ico" id="loginPassword" type="password" placeholder="••••••••" required data-testid="login-password-input" />
+                <button type="button" class="pw-toggle" data-toggle="loginPassword" aria-label="Show password"><i class="fa-solid fa-eye"></i></button>
+              </div>
+            </div>
+
+            <div class="form-row-between">
+              <label class="check-row">
+                <input id="rememberMe" type="checkbox" checked />
+                <span>Remember me</span>
+              </label>
+              <a href="#" class="link-muted" data-testid="forgot-password-link">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="primary-btn full-width" data-testid="login-submit-btn">
+              Sign in <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </form>
+
+          <form id="registerForm" class="form-stack hidden" data-testid="register-form">
+            <h3 class="form-title">Create your account</h3>
+            <p class="form-sub">Get instant access to the full agent suite.</p>
+
+            <div class="field">
+              <label class="field-label" for="registerUsername">Username</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-user input-ico"></i>
+                <input class="field-input has-ico" id="registerUsername" type="text" placeholder="codemage" required data-testid="register-username-input" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="registerEmail">Email</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-envelope input-ico"></i>
+                <input class="field-input has-ico" id="registerEmail" type="email" placeholder="you@example.com" required data-testid="register-email-input" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="registerPassword">Password</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-lock input-ico"></i>
+                <input class="field-input has-ico" id="registerPassword" type="password" placeholder="min 8 characters" required data-testid="register-password-input" />
+                <button type="button" class="pw-toggle" data-toggle="registerPassword" aria-label="Show password"><i class="fa-solid fa-eye"></i></button>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="registerConfirm">Confirm password</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-lock input-ico"></i>
+                <input class="field-input has-ico" id="registerConfirm" type="password" placeholder="re-enter password" required data-testid="register-confirm-input" />
+              </div>
+              <p class="field-hint" id="passwordHint"></p>
+            </div>
+
+            <button type="submit" class="primary-btn full-width" data-testid="register-submit-btn">
+              Create account <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </form>
+
+          <div id="authMessage" class="auth-msg" data-testid="auth-message">Login or register to begin.</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ─────────── PAGE: DASHBOARD ─────────── -->
+  <main class="page page-dashboard" data-page="dashboard" data-testid="page-dashboard">
+    <div class="dash-shell">
+      <section class="progress-strip" id="progressStrip" data-testid="progress-strip">
+        <div class="ps-head">
+          <div>
+            <span class="card-eyebrow">Current Run</span>
+            <h3 id="currentRunLabel">No run yet — paste code to start.</h3>
+          </div>
+          <span class="ps-pill" id="psPill"><i class="fa-solid fa-circle"></i> Idle</span>
+        </div>
+        <ol class="ps-steps">
+          <li class="ps-step" data-step="review"><span class="ps-dot"></span><i class="fa-solid fa-magnifying-glass"></i><span>Review</span></li>
+          <li class="ps-step" data-step="fixed"><span class="ps-dot"></span><i class="fa-solid fa-bug-slash"></i><span>Fix</span></li>
+          <li class="ps-step" data-step="optimized"><span class="ps-dot"></span><i class="fa-solid fa-bolt"></i><span>Optimize</span></li>
+          <li class="ps-step" data-step="documentation"><span class="ps-dot"></span><i class="fa-solid fa-book"></i><span>Document</span></li>
+          <li class="ps-step" data-step="explanation"><span class="ps-dot"></span><i class="fa-solid fa-lightbulb"></i><span>Explain</span></li>
+          <li class="ps-step" data-step="github"><span class="ps-dot"></span><i class="fa-brands fa-github"></i><span>GitHub</span></li>
+        </ol>
+      </section>
+
+      <div class="dash-grid">
+        <section class="card analyzer-card" data-testid="analyzer-card">
+          <div class="card-head row">
+            <div>
+              <span class="card-eyebrow">Workspace</span>
+              <h2 class="card-title">Analyze code</h2>
+            </div>
+            <div class="head-actions">
+              <button id="loadSampleBtn" class="ghost-btn sm" data-testid="load-sample-btn"><i class="fa-solid fa-flask"></i> Sample</button>
+              <button id="clearCodeBtn" class="ghost-btn sm" data-testid="clear-code-btn"><i class="fa-solid fa-eraser"></i> Clear</button>
+            </div>
+          </div>
+
+          <form id="analyzeForm" class="form-stack" data-testid="analyze-form">
+            <div class="field-row">
+              <div class="field">
+                <label class="field-label" for="projectName">Project name</label>
+                <input class="field-input" id="projectName" type="text" placeholder="Second largest element" required data-testid="project-name-input" />
+              </div>
+              <div class="field field-narrow">
+                <label class="field-label" for="language">Language</label>
+                <select class="field-input" id="language" required data-testid="language-select">
+                  <option value="python">Python</option>
+                  <option value="cpp">C++</option>
+                  <option value="java">Java</option>
+                  <option value="javascript">JavaScript</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="code-head">
+                <label class="field-label" for="codeInput">Code</label>
+                <span class="char-counter" id="charCounter">0 chars</span>
+              </div>
+              <textarea class="field-input code-area" id="codeInput" spellcheck="false" placeholder="# Paste your code here..." required data-testid="code-input"></textarea>
+            </div>
+
+            <div class="form-footer-row">
+              <label class="check-row">
+                <input id="githubPush" type="checkbox" data-testid="github-push-checkbox" />
+                <span>Generate GitHub README</span>
+              </label>
+              <button id="analyzeBtn" type="submit" class="primary-btn lg" data-testid="analyze-submit-btn">
+                <i class="fa-solid fa-play btn-icon"></i>
+                <span class="btn-text">Run AI Workflow</span>
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <aside class="card github-card" data-testid="github-card">
+          <div class="card-head">
+            <span class="card-eyebrow">GitHub</span>
+            <h2 class="card-title">Push to repo</h2>
+          </div>
+
+          <div id="githubStatus" class="info-msg" data-testid="github-status">Connect GitHub before pushing.</div>
+
+          <div class="form-stack">
+            <div class="field">
+              <label class="field-label" for="repoName">Repository name</label>
+              <input class="field-input" id="repoName" type="text" placeholder="my-optimized-project" data-testid="repo-name-input" />
+            </div>
+            <label class="check-row">
+              <input id="repoPrivate" type="checkbox" data-testid="repo-private-checkbox" />
+              <span>Make repository private</span>
+            </label>
+            <button id="pushGithubBtn" class="primary-btn full-width" data-testid="push-github-btn">
+              <i class="fa-brands fa-github"></i> Push code + README
+            </button>
+          </div>
+
+          <div class="github-checks">
+            <span class="check-item"><i class="fa-solid fa-check"></i> Optimized code</span>
+            <span class="check-item"><i class="fa-solid fa-check"></i> README.md</span>
+            <span class="check-item"><i class="fa-solid fa-check"></i> OAuth secured</span>
+          </div>
+        </aside>
+      </div>
+
+      <section class="results-stack" id="resultsStack">
+        <div class="results-head">
+          <div>
+            <span class="card-eyebrow">Output</span>
+            <h2 class="card-title">AI Results</h2>
+          </div>
+          <div class="head-actions">
+            <button id="downloadPdfBtn" class="ghost-btn sm" data-testid="download-pdf-btn"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+            <button id="collapseAllBtn" class="ghost-btn sm" data-testid="collapse-all-btn"><i class="fa-solid fa-compress"></i> Collapse all</button>
+          </div>
+        </div>
+
+        <div id="statusBanner" class="status-banner" data-testid="status-banner">No analysis yet. Run a workflow above.</div>
+
+        <article class="result-card" data-result="review" data-testid="result-card-review">
+          <header class="rc-head">
+            <div class="rc-title"><i class="fa-solid fa-magnifying-glass rc-ico violet"></i> Review Report <span class="rc-meta" id="rcMetaReview"></span></div>
+            <div class="rc-actions">
+              <button class="ghost-btn sm" data-copy="review" data-testid="copy-review-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+              <button class="ghost-btn sm" data-download="review" data-testid="download-review-btn"><i class="fa-solid fa-download"></i></button>
+              <button class="icon-btn sm rc-toggle" data-testid="toggle-review-btn"><i class="fa-solid fa-chevron-up"></i></button>
+            </div>
+          </header>
+          <pre class="rc-body" id="outReview" data-testid="output-review">Run an analysis to see the review report.</pre>
+        </article>
+
+        <article class="result-card" data-result="fixed" data-testid="result-card-fixed">
+          <header class="rc-head">
+            <div class="rc-title"><i class="fa-solid fa-bug-slash rc-ico cyan"></i> Fixed Code</div>
+            <div class="rc-actions">
+              <button class="ghost-btn sm" data-copy="fixed" data-testid="copy-fixed-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+              <button class="ghost-btn sm" data-download="fixed" data-testid="download-fixed-btn"><i class="fa-solid fa-download"></i></button>
+              <button class="icon-btn sm rc-toggle"><i class="fa-solid fa-chevron-up"></i></button>
+            </div>
+          </header>
+          <pre class="rc-body code" id="outFixed">Run an analysis to see fixed code.</pre>
+        </article>
+
+        <article class="result-card" data-result="optimized" data-testid="result-card-optimized">
+          <header class="rc-head">
+            <div class="rc-title"><i class="fa-solid fa-bolt rc-ico violet"></i> Optimized Code</div>
+            <div class="rc-actions">
+              <button class="ghost-btn sm" data-copy="optimized" data-testid="copy-optimized-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+              <button class="ghost-btn sm" data-download="optimized" data-testid="download-optimized-btn"><i class="fa-solid fa-download"></i></button>
+              <button class="icon-btn sm rc-toggle"><i class="fa-solid fa-chevron-up"></i></button>
+            </div>
+          </header>
+          <pre class="rc-body code" id="outOptimized">Run an analysis to see optimized code.</pre>
+        </article>
+
+        <article class="result-card" data-result="documentation" data-testid="result-card-docs">
+          <header class="rc-head">
+            <div class="rc-title"><i class="fa-solid fa-book rc-ico cyan"></i> Documentation</div>
+            <div class="rc-actions">
+              <button class="ghost-btn sm" data-copy="documentation" data-testid="copy-docs-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+              <button class="ghost-btn sm" data-download="documentation" data-testid="download-docs-btn"><i class="fa-solid fa-download"></i></button>
+              <button class="icon-btn sm rc-toggle"><i class="fa-solid fa-chevron-up"></i></button>
+            </div>
+          </header>
+          <pre class="rc-body" id="outDocumentation">Run an analysis to see generated documentation.</pre>
+        </article>
+
+        <article class="result-card" data-result="explanation" data-testid="result-card-explanation">
+          <header class="rc-head">
+            <div class="rc-title"><i class="fa-solid fa-lightbulb rc-ico violet"></i> Dry-run Explanation</div>
+            <div class="rc-actions">
+              <button class="ghost-btn sm" data-copy="explanation" data-testid="copy-explanation-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+              <button class="ghost-btn sm" data-download="explanation" data-testid="download-explanation-btn"><i class="fa-solid fa-download"></i></button>
+              <button class="icon-btn sm rc-toggle"><i class="fa-solid fa-chevron-up"></i></button>
+            </div>
+          </header>
+          <pre class="rc-body" id="outExplanation">Run an analysis to see the dry-run explanation.</pre>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <!-- ─────────── PAGE: HISTORY ─────────── -->
+  <main class="page page-history" data-page="history" data-testid="page-history">
+    <div class="page-shell">
+      <div class="page-head reveal">
+        <div>
+          <span class="card-eyebrow">Archive</span>
+          <h1>Run history</h1>
+          <p>Every analysis is saved automatically. Replay, push, or delete any time.</p>
+        </div>
+        <div class="head-actions">
+          <button id="refreshHistoryBtn" class="ghost-btn" data-testid="refresh-history-btn"><i class="fa-solid fa-arrows-rotate"></i> Refresh</button>
+          <button id="clearHistoryBtn" class="ghost-btn danger" data-testid="clear-history-btn"><i class="fa-solid fa-trash"></i> Clear all</button>
+        </div>
+      </div>
+
+      <div class="history-toolbar reveal delay-1">
+        <div class="search-wrap">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input id="historySearch" type="text" placeholder="Search by project name…" data-testid="history-search-input" />
+        </div>
+        <div class="filter-chips" id="historyFilters">
+          <button class="chip active" data-filter="all" data-testid="filter-all">All</button>
+          <button class="chip" data-filter="python" data-testid="filter-python">Python</button>
+          <button class="chip" data-filter="cpp" data-testid="filter-cpp">C++</button>
+          <button class="chip" data-filter="java" data-testid="filter-java">Java</button>
+          <button class="chip" data-filter="javascript" data-testid="filter-js">JavaScript</button>
+        </div>
+      </div>
+
+      <div id="historyList" class="history-grid reveal delay-2" data-testid="history-list">
+        <p class="empty-msg">Login to view your saved runs.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ─────────── PAGE: ABOUT ─────────── -->
+  <main class="page page-about" data-page="about" data-testid="page-about">
+    <div class="page-shell">
+      <div class="page-head reveal">
+        <span class="card-eyebrow">About</span>
+        <h1>Built for engineers, by engineers.</h1>
+        <p>CodeMind is an agentic AI assistant powered by LangGraph, LangChain and Groq. It coordinates multiple specialised LLM agents to deliver production-grade output every run.</p>
+      </div>
+
+      <section class="about-grid">
+        <div class="about-card reveal">
+          <h3><i class="fa-solid fa-layer-group"></i> Tech Stack</h3>
+          <div class="stack-tags">
+            <span>FastAPI</span><span>LangGraph</span><span>LangChain</span>
+            <span>Groq LLM</span><span>PostgreSQL</span><span>Neon Cloud</span>
+            <span>JWT</span><span>Vanilla JS</span>
+            <span>Multi Agent</span><span>Python</span>
+          </div>
+        </div>
+
+        <div class="about-card reveal delay-1">
+          <h3><i class="fa-solid fa-diagram-project"></i> AI Workflow</h3>
+          <ol class="about-flow">
+            <li><strong>Reviewer</strong> — finds bugs, smells, anti-patterns</li>
+            <li><strong>Bug Fixer</strong> — repairs logic & edge cases</li>
+            <li><strong>Optimizer</strong> — improves perf & complexity</li>
+            <li><strong>Documenter</strong> — generates README + inline docs</li>
+            <li><strong>Explainer</strong> — dry-run walkthrough</li>
+            <li><strong>GitHub Agent</strong> — repo + push</li>
+          </ol>
+        </div>
+
+        <div class="about-card reveal delay-2">
+          <h3><i class="fa-solid fa-shield-halved"></i> Security</h3>
+          <p>JWT-based authentication, scoped tokens, OAuth-secured GitHub push. Your code is never used to train any model.</p>
+        </div>
+
+        <div class="about-card author reveal delay-3">
+          <div class="author-avatar"><i class="fa-solid fa-user-astronaut"></i></div>
+          <h3>Bushra khan</h3>
+          <p>Built with obsession by a solo engineer who got tired of context-switching between code review, optimization and documentation tools.</p>
+          <div class="author-links">
+            <a class="ghost-btn sm" href="https://github.com/Bushra-engr"><i class="fa-brands fa-github"></i> GitHub</a>
+            <a class="ghost-btn sm" href="https://www.linkedin.com/in/bushra-khan-1705ba33b/"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            <a class="ghost-btn sm"
+   href="mailto:bushrakhan.codes@gmail.com?subject=Regarding%20CodeMind&body=Hi%20Bushu,">
+    <i class="fa-solid fa-envelope"></i> Email
+</a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="page-footer">
+        <div class="brand small">
+          <div class="brand-mark"><span>CM</span></div>
+          <span class="brand-name">CodeMind</span>
+        </div>
+        <span class="muted">© 2026 CodeMind. Crafted with care.</span>
+      </footer>
+    </div>
+  </main>
+
+  <div id="toast" class="toast hidden" data-testid="toast"></div>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

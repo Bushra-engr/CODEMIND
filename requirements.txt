@@ -1,0 +1,99 @@
+langchain
+langchain-core
+langchain-community
+langchain-text-splitters
+
+langgraph
+langgraph-checkpoint-sqlite
+
+crewai
+crewai-tools
+
+langsmith
+
+# LLM Providers
+
+langchain-groq
+groq
+
+langchain-google-genai
+google-generativeai
+
+langchain-openai
+openai
+
+langchain-mistralai
+mistralai
+
+langchain-huggingface
+huggingface-hub
+transformers
+sentence-transformers
+
+# Vector DB
+
+chromadb
+faiss-cpu
+
+# Document Processing
+
+pymupdf
+pypdf
+python-docx
+openpyxl
+unstructured
+
+# RAG
+
+rank-bm25
+flashrank
+
+# Tools
+
+duckduckgo-search
+wikipedia
+arxiv
+numexpr
+tavily-python
+
+# APIs
+
+fastapi
+uvicorn[standard]
+python-multipart
+httpx
+aiohttp
+requests
+beautifulsoup4
+
+# Frontend
+
+streamlit
+gradio
+
+# Data Science
+
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+
+# Validation
+
+pydantic
+pydantic-settings
+
+# Config
+
+python-dotenv
+
+# Retry
+
+tenacity
+
+# Database
+
+sqlalchemy
+psycopg2-binary
+redis
