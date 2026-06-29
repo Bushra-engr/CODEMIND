@@ -8,21 +8,25 @@ from backend.routes.history import router as history_router
 from backend.routes.github import router as github_router
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from pathlib import Path
 
+BASE_DIR = Path(__file__).resolve().parent.parent
 app = FastAPI(
     title="AI Powered Coding Assistant",
     description="Backend Server with Neon Postgres and JWT",
     version = "1.0.0"
 )
+
 app.mount(
     "/static",
-    StaticFiles(directory=r"C:\Deep Learning\AI_POWERED_CODING_ASSISTANT\frontend\static"),
+    StaticFiles(directory=BASE_DIR / "frontend" / "static"),
     name="static"
 )
 
 templates = Jinja2Templates(
-    directory=r"C:\Deep Learning\AI_POWERED_CODING_ASSISTANT\frontend\templates"
+    directory=BASE_DIR / "frontend" / "templates"
 )
+
 
 app.add_middleware(
     CORSMiddleware,
