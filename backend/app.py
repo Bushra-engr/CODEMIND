@@ -24,7 +24,7 @@ app.mount(
 )
 
 templates = Jinja2Templates(
-    directory=BASE_DIR / "frontend" / "templates"/"index.html"
+    directory=BASE_DIR / "frontend" / "templates"
 )
 
 
