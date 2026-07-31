@@ -14,7 +14,6 @@ engine = create_engine(
     pool_timeout=30,
     pool_size=5,
     max_overflow=10,
-    echo=True,
 )
 
 SessionLocal = sessionmaker(

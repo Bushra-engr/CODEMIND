@@ -5,7 +5,7 @@ from backend.routes.register import router as register_router
 from backend.routes.login import router as login_router
 from backend.routes.coderuns import router as analyze_router
 from backend.routes.history import router as history_router
-from backend.routes.github import router as github_router
+from backend.routes.github import github_alias_router, router as github_router
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pathlib import Path
@@ -45,6 +45,7 @@ app.include_router(analyze_router)
 app.include_router(history_router)
 
 app.include_router(github_router)
+app.include_router(github_alias_router)
 
 @app.get("/")
 async def home(request: Request):
@@ -53,7 +54,12 @@ async def home(request: Request):
         name="index.html",
         context={}
     )
-     
+
+@app.get("/hello")
+def hello():
+    return {
+        "messge":"hellow"
+    }     
 @app.get("/health")
 def health_check():
     return {

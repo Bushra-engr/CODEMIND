@@ -19,7 +19,8 @@ def insert_user(user_data: UserRegister):
             ).first()
             
             if existing_user:
-                return {"success": False, "message": "Username or Email already registered"}
+                return {
+                    "success": False, "message": "Username or Email already registered"}
 
             # Securely hash using raw bcrypt
             hashed_pass = hash_password(user_data.password)
