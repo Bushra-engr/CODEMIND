@@ -328,6 +328,13 @@ textarea.field-input { resize: vertical; }
 .auth-msg, .info-msg { padding: 11px 14px; border-radius: var(--radius); font-size: 12.5px; margin-top: 16px; background: var(--surface-2); border: 1px solid var(--border); color: var(--text-2); }
 .auth-msg.error { background: color-mix(in srgb, var(--red) 8%, transparent); border-color: color-mix(in srgb, var(--red) 25%, transparent); color: var(--red); }
 .auth-msg.success { background: color-mix(in srgb, var(--green) 8%, transparent); border-color: color-mix(in srgb, var(--green) 25%, transparent); color: var(--green); }
+.status-info { padding: 11px 14px; border-radius: var(--radius); font-size: 12.5px; margin-top: 16px; background: var(--surface-2); border: 1px solid var(--border); color: var(--text-2); }
+.status-info.connected { background: color-mix(in srgb, var(--green) 8%, transparent); border-color: color-mix(in srgb, var(--green) 25%, transparent); color: var(--green); }
+.status-info.repo-created { display: grid; gap: 6px; align-items: start; }
+.status-info.repo-created strong { color: var(--green); font-size: 13px; }
+.status-info.repo-created span { color: var(--text-2); }
+.status-info.repo-created a { width: fit-content; color: var(--accent); font-weight: 700; text-decoration: none; }
+.status-info.repo-created a:hover { text-decoration: underline; }
 
 /* ─── DASHBOARD ─── */
 .dash-shell { max-width: 1520px; margin: 0 auto; padding: 32px 28px 80px; position: relative; z-index: 1; }

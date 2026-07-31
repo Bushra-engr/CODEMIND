@@ -523,10 +523,7 @@ $("githubConnectBtn")?.addEventListener("click", async () => {
   try {
     const data = await api("/auth/github/login");
     if (data?.redirect_url) {
-      window.open(data.redirect_url, "_blank");
-      showToast("Complete GitHub authorization in the new tab.");
-      // Re-check status after 5 seconds (user may have authorized)
-      setTimeout(checkGithubStatus, 5000);
+      window.location.href = data.redirect_url;
     }
   } catch (err) { showToast(err.message); }
 });
@@ -569,8 +566,21 @@ $("pushGithubBtn")?.addEventListener("click", async () => {
     });
 
     completeAllProgress();
-    showToast(data.message || "Pushed to GitHub!");
-    if (data.repo_url) window.open(data.repo_url, "_blank");
+    const githubStatus = $("githubStatus");
+    if (githubStatus) {
+      githubStatus.className = "status-info connected repo-created";
+      githubStatus.innerHTML = data.repo_url
+        ? `
+          <strong>Repository created successfully.</strong>
+          <span>${data.message || "Optimized code and README were pushed to GitHub."}</span>
+          <a href="${esc(data.repo_url)}" target="_blank" rel="noopener noreferrer">Open repository →</a>
+        `
+        : `
+          <strong>Repository created successfully.</strong>
+          <span>${data.message || "Optimized code and README were pushed to GitHub."}</span>
+        `;
+    }
+    showToast(data.repo_url ? "Repository created on GitHub!" : (data.message || "Pushed to GitHub!"));
   } catch (err) {
     showToast(err.message);
     console.error("[CodeFlow] push error:", err);
